@@ -1,10 +1,16 @@
 const express = require("express");
+require("dotenv").config();
+const cors = require("cors");
+const router = require("./router/index");
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("hello world!");
-});
+// middleware
+app.use(cors());
+app.use(express.json());
 
-app.listen("4000", (req, res) => {
-  console.log("listening on port 4000");
+// router
+app.use("/", router);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, (req, res) => {
+  console.log(`listening on port ${PORT}`);
 });
