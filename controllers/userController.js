@@ -1,5 +1,10 @@
 const User = require("../models/userModel");
-const { validateEmail, validateUsername } = require("../helpers/validation");
+const bcrypt = require("bcrypt");
+const {
+  validateEmail,
+  validateLength,
+  validateUsername,
+} = require("../helpers/validation");
 const userController = async (req, res, next) => {
   try {
     const {
@@ -25,22 +30,34 @@ const userController = async (req, res, next) => {
       return res.status(400).json({ Message: "Email already in use" });
     }
     // name validation
-    if (!validateUsername(firstName, 3, 15)) {
+    if (!validateLength(firstName, 3, 15)) {
       return res.status(400).json({
         Message: "firstName Should be minimum 3 and max 15 characters",
       });
     }
-    if (!validateUsername(lastName, 3, 15)) {
+    if (!validateLength(lastName, 3, 15)) {
       return res.status(400).json({
         Message: "lastName Should be minimum 2 and max 15 characters",
       });
     }
+    // password validation
+    if (!validateLength(password, 8, 40)) {
+      return res.status(400).json({
+        Message: "password Should be minimum 8",
+      });
+    }
+
+    // username validate
+    let tempUsername = firstName + lastName;
+    let finalUsername = await validateUsername(tempUsername);
+    // password has
+    const hash = bcrypt.hashSync(password, 12);
     const newUser = await new User({
       firstName,
       lastName,
-      username,
+      username: finalUsername,
       email,
-      password,
+      password: hash,
       bMonth,
       bDay,
       bYear,
