@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const registerController = require("../../controllers/registerController");
+const userController = require("../../controllers/userController");
 
 //TODO: method change this get == post
-router.post("/register", registerController);
+router.post("/", userController);
 
 module.exports = router;

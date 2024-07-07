@@ -37,17 +37,17 @@ const userModel = new mongoose.Schema(
       trim: true,
     },
     bMonth: {
-      typeL: Number,
+      type: Number,
       required: true,
       trim: true,
     },
     bDay: {
-      typeL: Number,
+      type: Number,
       required: true,
       trim: true,
     },
     bYear: {
-      typeL: Number,
+      type: Number,
       required: true,
       trim: true,
     },
