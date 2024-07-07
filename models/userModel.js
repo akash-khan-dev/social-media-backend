@@ -143,7 +143,7 @@ const userModel = new mongoose.Schema(
       {
         post: {
           type: ObjectId,
-          ref: "P ost",
+          ref: "Post",
         },
         saveAt: {
           type: Date,
