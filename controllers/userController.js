@@ -75,7 +75,17 @@ const userController = async (req, res, next) => {
     const url = `${process.env.BASE_URL}/activate/${emailToken}`;
     sendVerifiedEmail(newUser.email, newUser.firstName, url);
 
-    return res.status(200).json({ user: newUser });
+    const token = jwtToken(newUser._id, "7d");
+    return res.status(200).json({
+      id: newUser._id,
+      username: newUser.username,
+      profilePicture: newUser.profilePicture,
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      token: token,
+      verified: newUser.verified,
+      message: "Registration successful! Please activate your email to start",
+    });
   } catch (err) {
     res.status(404).send(err.message);
   }
