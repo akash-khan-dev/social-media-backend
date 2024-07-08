@@ -6,6 +6,7 @@ const {
   validateUsername,
 } = require("../helpers/validation");
 const { jwtToken } = require("../helpers/token");
+const { sendVerifiedEmail } = require("../helpers/mailer");
 const userController = async (req, res, next) => {
   try {
     const {
@@ -69,7 +70,10 @@ const userController = async (req, res, next) => {
 
     // token generation
     const emailToken = jwtToken(newUser._id, "30m");
-    console.log(emailToken);
+
+    // send verification email
+    const url = `${process.env.BASE_URL}/activate/${emailToken}`;
+    sendVerifiedEmail(newUser.email, newUser.firstName, url);
 
     return res.status(200).json({ user: newUser });
   } catch (err) {
