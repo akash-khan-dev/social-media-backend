@@ -7,7 +7,8 @@ const {
 } = require("../helpers/validation");
 const { jwtToken } = require("../helpers/token");
 const { sendVerifiedEmail } = require("../helpers/mailer");
-const userController = async (req, res, next) => {
+
+const registrationController = async (req, res, next) => {
   try {
     const {
       firstName,
@@ -90,4 +91,4 @@ const userController = async (req, res, next) => {
     res.status(404).send(err.message);
   }
 };
-module.exports = userController;
+module.exports = registrationController;
