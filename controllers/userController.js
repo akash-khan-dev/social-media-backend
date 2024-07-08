@@ -5,6 +5,7 @@ const {
   validateLength,
   validateUsername,
 } = require("../helpers/validation");
+const { jwtToken } = require("../helpers/token");
 const userController = async (req, res, next) => {
   try {
     const {
@@ -65,6 +66,11 @@ const userController = async (req, res, next) => {
       gender,
     });
     newUser.save();
+
+    // token generation
+    const emailToken = jwtToken(newUser._id, "30m");
+    console.log(emailToken);
+
     return res.status(200).json({ user: newUser });
   } catch (err) {
     res.status(404).send(err.message);
