@@ -21,6 +21,7 @@ const loginController = async (req, res, next) => {
         profilePicture: user.profilePicture,
         firstName: user.firstName,
         lastName: user.lastName,
+        email: email,
         token: token,
         verified: user.verified,
         message: "Login successful ",

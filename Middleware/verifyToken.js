@@ -9,11 +9,11 @@ const verifyToken = async (req, res, next) => {
     if (!token) {
       return res.status(404).json({ message: "you have not valid token" });
     }
-    jwt.verify(token, process.env.SECRET_KEY, function (err, user) {
+    jwt.verify(token, process.env.SECRET_KEY, function (err, userId) {
       if (err) {
         return res.status(404).json({ message: "Invalid token" });
       }
-      req.user = user;
+      req.user = userId;
       next();
     });
   } catch (err) {
