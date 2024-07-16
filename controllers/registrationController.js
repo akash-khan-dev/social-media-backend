@@ -13,7 +13,6 @@ const registrationController = async (req, res, next) => {
     const {
       firstName,
       lastName,
-      username,
       email,
       password,
       bMonth,
