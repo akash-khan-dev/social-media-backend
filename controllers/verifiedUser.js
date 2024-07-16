@@ -6,7 +6,7 @@ const verifiedUser = async (req, res, next) => {
     const { token } = req.body;
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     const checkVerified = await User.findById(decoded.user);
-    if (verified !== decoded.id) {
+    if (verified !== decoded.user) {
       return res.status(400).json({
         message: "You don't have authorization to complete this operation",
       });
