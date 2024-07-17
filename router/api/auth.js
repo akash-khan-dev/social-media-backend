@@ -6,6 +6,7 @@ const verifyToken = require("../../Middleware/verifyToken");
 const againActivateController = require("../../controllers/againActivateController");
 const resetPassword = require("../../controllers/resetPassword");
 const resetCode = require("../../controllers/resetCode");
+const matchOTP = require("../../controllers/matchOTP");
 
 router.post("/", registrationController);
 router.post("/activate", verifyToken, verifiedUserController);
@@ -13,5 +14,6 @@ router.post("/login", loginController);
 router.post("/againActivate", verifyToken, againActivateController);
 router.post("/resetPassword", resetPassword);
 router.post("/resetCode", resetCode);
+router.post("/matchOTP", matchOTP);
 
 module.exports = router;
