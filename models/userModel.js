@@ -153,7 +153,7 @@ const userModel = new mongoose.Schema(
     ],
   },
   {
-    timestamp: true,
+    timestamps: true,
   }
 );
 
