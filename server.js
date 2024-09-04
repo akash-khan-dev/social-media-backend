@@ -2,11 +2,17 @@ const express = require("express");
 require("dotenv").config();
 const MongoConfig = require("./DbConnection/MongoConfig");
 const cors = require("cors");
+const fileupload = require("express-fileupload");
 const router = require("./router/index");
 const app = express();
 
 // middleware
 app.use(cors());
+app.use(
+  fileupload({
+    useTempFiles: true,
+  })
+);
 app.use(express.json());
 
 // database configuration
