@@ -15,6 +15,9 @@ const postModel = new Schema(
     text: {
       type: String,
     },
+    background: {
+      type: String,
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
