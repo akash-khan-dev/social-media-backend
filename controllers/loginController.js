@@ -24,6 +24,9 @@ const loginController = async (req, res, next) => {
         email: email,
         token: token,
         verified: user.verified,
+        cover: user.cover,
+        friend: user.friends,
+        followers: user.followers,
         message: "Login successful ",
       });
     });
