@@ -35,7 +35,7 @@ removeItem = (path) => {
   });
 };
 
-const uploadImageController = async (req, res) => {
+exports.uploadImageController = async (req, res) => {
   try {
     const { path } = req.body;
     const files = Object.values(req.files).flat();
@@ -51,4 +51,21 @@ const uploadImageController = async (req, res) => {
     return res.status(404).json({ message: e.message });
   }
 };
-module.exports = uploadImageController;
+exports.imageList = async (req, res, next) => {
+  try {
+    const { path, sort, max } = req.body;
+    cloudinary.v2.search
+      .expression(`${path}`)
+      .sort_by("public_id", `${sort}`)
+      .max_results(max)
+      .execute()
+      .then((results) => {
+        res.json(results);
+      })
+      .catch((err) => {
+        return res.json({ message: err.message });
+      });
+  } catch (err) {
+    return res.status(404).json({ message: err.message });
+  }
+};
