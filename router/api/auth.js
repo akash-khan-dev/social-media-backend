@@ -9,6 +9,7 @@ const resetCode = require("../../controllers/resetCode");
 const matchOTP = require("../../controllers/matchOTP");
 const changePassword = require("../../controllers/changePassword");
 const getUserController = require("../../controllers/getUserController");
+const uploadProfilePictureController = require("../../controllers/uploadProfilePictureControlle");
 
 router.post("/", registrationController);
 router.post("/activate", verifyToken, verifiedUserController);
@@ -19,5 +20,6 @@ router.post("/resetCode", resetCode);
 router.post("/matchOTP", matchOTP);
 router.post("/changePassword", changePassword);
 router.get("/user/:username", getUserController);
+router.put("/uploadProfilePicture", uploadProfilePictureController);
 
 module.exports = router;

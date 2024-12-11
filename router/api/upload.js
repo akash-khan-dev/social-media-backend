@@ -1,11 +1,13 @@
+const router = require("express").Router();
 const uploadImageMiddleware = require("../../Middleware/uploadImageMiddleware");
 const {
   uploadImageController,
   imageList,
 } = require("../../controllers/uploadImageController");
-const router = require("express").Router();
 
+const verifyToken = require("../../Middleware/verifyToken");
+// TODO: verify token check korte hobe
 router.post("/uploadImage", uploadImageMiddleware, uploadImageController);
-router.get("/imgList", imageList);
+router.post("/imgList", imageList);
 
 module.exports = router;

@@ -18,8 +18,10 @@ const uploadImageCloudenary = async (path, file) => {
       },
       (err, res) => {
         if (err) {
+          console.log(err);
+
           removeItem(file.tempFilePath);
-          return res.status(404).json({ message: "file  upload field" });
+          return reject({ message: "File upload failed", error: err });
         }
         resolve({
           url: res.secure_url,
