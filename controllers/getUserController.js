@@ -9,7 +9,9 @@ const getUserController = async (req, res, next) => {
       return res.json({ message: "User not found", ok: false });
     }
 
-    const post = await PostModel.find({ user: user._id }).populate("user");
+    const post = await PostModel.find({ user: user._id })
+      .populate("user")
+      .sort({ createdAt: -1 });
     return res.status(200).json({ ...user.toObject(), post });
   } catch (e) {
     return res.status(500).json({ message: e.message, ok: false });

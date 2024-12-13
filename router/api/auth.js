@@ -10,6 +10,7 @@ const matchOTP = require("../../controllers/matchOTP");
 const changePassword = require("../../controllers/changePassword");
 const getUserController = require("../../controllers/getUserController");
 const uploadProfilePictureController = require("../../controllers/uploadProfilePictureControlle");
+const uploadCoverPictureController = require("../../controllers/uploadCoverPictureController");
 
 router.post("/", registrationController);
 router.post("/activate", verifyToken, verifiedUserController);
@@ -21,5 +22,6 @@ router.post("/matchOTP", matchOTP);
 router.post("/changePassword", changePassword);
 router.get("/user/:username", getUserController);
 router.put("/uploadProfilePicture", uploadProfilePictureController);
+router.put("/uploadCoverPicture", uploadCoverPictureController);
 
 module.exports = router;

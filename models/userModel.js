@@ -34,6 +34,7 @@ const userModel = new mongoose.Schema(
     },
     cover: {
       type: String,
+      default: "",
       trim: true,
     },
     bMonth: {

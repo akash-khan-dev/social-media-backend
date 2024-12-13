@@ -2,7 +2,7 @@ const PostModel = require("../models/Post");
 const showPosts = async (req, res) => {
   try {
     const posts = await PostModel.find()
-      .populate("user", "firstName lastName username profilePicture")
+      .populate("user", "firstName lastName username profilePicture gender")
       .sort({ createdAt: -1 });
     return res.status(200).json({ data: posts });
   } catch (err) {
