@@ -11,6 +11,7 @@ const changePassword = require("../../controllers/changePassword");
 const getUserController = require("../../controllers/getUserController");
 const uploadProfilePictureController = require("../../controllers/uploadProfilePictureControlle");
 const uploadCoverPictureController = require("../../controllers/uploadCoverPictureController");
+const updateDetailsController = require("../../controllers/updateDetailsController");
 
 router.post("/", registrationController);
 router.post("/activate", verifyToken, verifiedUserController);
@@ -23,5 +24,6 @@ router.post("/changePassword", changePassword);
 router.get("/user/:username", getUserController);
 router.put("/uploadProfilePicture", uploadProfilePictureController);
 router.put("/uploadCoverPicture", uploadCoverPictureController);
+router.put("/uploadDetails", updateDetailsController);
 
 module.exports = router;
