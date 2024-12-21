@@ -129,7 +129,7 @@ const userModel = new mongoose.Schema(
       relationship: {
         type: String,
         enum: [
-          "Singe,",
+          "Singe",
           "In a Relationship",
           "Married",
           "it's Complicated",
