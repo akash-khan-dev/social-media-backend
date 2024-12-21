@@ -13,6 +13,7 @@ const uploadProfilePictureController = require("../../controllers/uploadProfileP
 const uploadCoverPictureController = require("../../controllers/uploadCoverPictureController");
 const updateDetailsController = require("../../controllers/updateDetailsController");
 const addFriendController = require("../../controllers/addFriendController");
+const cancelRequestController = require("../../controllers/cancelRequestController");
 
 router.post("/", registrationController);
 router.post("/activate", verifyToken, verifiedUserController);
@@ -27,5 +28,6 @@ router.put("/uploadProfilePicture", uploadProfilePictureController);
 router.put("/uploadCoverPicture", uploadCoverPictureController);
 router.put("/uploadDetails", updateDetailsController);
 router.put("/addfriend/:id", addFriendController);
+router.put("/cancelrequest/:id", cancelRequestController);
 
 module.exports = router;
