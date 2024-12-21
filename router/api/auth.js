@@ -15,6 +15,7 @@ const updateDetailsController = require("../../controllers/updateDetailsControll
 const addFriendController = require("../../controllers/addFriendController");
 const cancelRequestController = require("../../controllers/cancelRequestController");
 const followController = require("../../controllers/followController");
+const unFollowController = require("../../controllers/unFollowController");
 
 router.post("/", registrationController);
 router.post("/activate", verifyToken, verifiedUserController);
@@ -31,5 +32,6 @@ router.put("/uploadDetails", updateDetailsController);
 router.put("/addfriend/:id", addFriendController);
 router.put("/cancelrequest/:id", cancelRequestController);
 router.put("/follow/:id", followController);
+router.put("/unfollow/:id", unFollowController);
 
 module.exports = router;
