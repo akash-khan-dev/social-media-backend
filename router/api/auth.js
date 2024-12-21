@@ -17,6 +17,7 @@ const cancelRequestController = require("../../controllers/cancelRequestControll
 const followController = require("../../controllers/followController");
 const unFollowController = require("../../controllers/unFollowController");
 const acceptRequestController = require("../../controllers/acceptRequestController");
+const unFriendController = require("../../controllers/unFriendController");
 
 router.post("/", registrationController);
 router.post("/activate", verifyToken, verifiedUserController);
@@ -35,5 +36,6 @@ router.put("/cancelrequest/:id", cancelRequestController);
 router.put("/follow/:id", followController);
 router.put("/unfollow/:id", unFollowController);
 router.put("/acceptrequest/:id", acceptRequestController);
+router.put("/unfrined/:id", unFriendController);
 
 module.exports = router;
