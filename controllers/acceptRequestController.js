@@ -8,10 +8,10 @@ const acceptRequestController = async (req, res, next) => {
       let receiver = await User.findById(senderId);
       let sender = await User.findById(receiverId);
       if (receiver.request.includes(sender._id)) {
-        await receiver.updateOne({
+        await receiver.update({
           $push: { friends: sender._id, following: sender._id },
         });
-        await receiver.updateOne({
+        await receiver.update({
           $push: { friends: receiver._id, followers: receiver._id },
         });
         await receiver.updateOne({
