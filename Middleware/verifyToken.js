@@ -13,6 +13,7 @@ const verifyToken = async (req, res, next) => {
       if (err) {
         return res.status(404).json({ message: "Invalid token" });
       }
+
       req.user = userId;
       next();
     });

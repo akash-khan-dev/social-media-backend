@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 
 const followController = async (req, res, next) => {
   try {
-    const { senderId } = req.body;
+    const senderId = req.user.user;
     const receiverId = req.params.id;
     if (senderId !== receiverId) {
       let sender = await User.findById(senderId);

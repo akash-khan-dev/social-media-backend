@@ -28,16 +28,20 @@ router.post("/resetPassword", resetPassword);
 router.post("/resetCode", resetCode);
 router.post("/matchOTP", matchOTP);
 router.post("/changePassword", changePassword);
-router.get("/user/:username", getUserController);
-router.put("/uploadProfilePicture", uploadProfilePictureController);
-router.put("/uploadCoverPicture", uploadCoverPictureController);
-router.put("/uploadDetails", updateDetailsController);
-router.put("/addfriend/:id", addFriendController);
-router.put("/cancelrequest/:id", cancelRequestController);
-router.put("/follow/:id", followController);
-router.put("/unfollow/:id", unFollowController);
-router.put("/acceptrequest/:id", acceptRequestController);
-router.put("/unfrined/:id", unFriendController);
-router.put("/deleterequest/:id", deleteRequestController);
+router.get("/user/:username", verifyToken, getUserController);
+router.put(
+  "/uploadProfilePicture",
+  verifyToken,
+  uploadProfilePictureController
+);
+router.put("/uploadCoverPicture", verifyToken, uploadCoverPictureController);
+router.put("/uploadDetails", verifyToken, updateDetailsController);
+router.put("/addfriend/:id", verifyToken, addFriendController);
+router.put("/cancelrequest/:id", verifyToken, cancelRequestController);
+router.put("/follow/:id", verifyToken, followController);
+router.put("/unfollow/:id", verifyToken, unFollowController);
+router.put("/acceptrequest/:id", verifyToken, acceptRequestController);
+router.put("/unfrined/:id", verifyToken, unFriendController);
+router.put("/deleterequest/:id", verifyToken, deleteRequestController);
 
 module.exports = router;
