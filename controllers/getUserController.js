@@ -40,7 +40,10 @@ const getUserController = async (req, res, next) => {
       .populate("user")
       .sort({ createdAt: -1 });
     // console.log(getProfile);
-
+    await getProfile.populate(
+      "friends",
+      "firstName lastName username profilePicture"
+    );
     return res.status(200).json({ ...getProfile.toObject(), post, friendShip });
   } catch (e) {
     return res.status(500).json({ message: e.message, ok: false });
