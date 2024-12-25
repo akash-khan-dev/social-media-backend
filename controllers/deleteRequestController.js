@@ -8,17 +8,25 @@ const deleteRequestController = async (req, res, next) => {
       let receiver = await User.findById(senderId);
       let sender = await User.findById(receiverId);
       if (receiver.request.includes(sender._id)) {
-        await receiver.update({
-          $pull: {
-            request: sender._id,
-            followers: sender._id,
+        await User.findByIdAndUpdate(
+          receiver._id,
+          {
+            $pull: {
+              request: sender._id,
+              followers: sender._id,
+            },
           },
-        });
-        await sender.update({
-          $pull: {
-            following: receiver._id,
+          { new: true }
+        );
+        await User.findByIdAndUpdate(
+          sender._id,
+          {
+            $pull: {
+              following: receiver._id,
+            },
           },
-        });
+          { new: true }
+        );
 
         return res.json({ message: " Request Delete" });
       } else {
