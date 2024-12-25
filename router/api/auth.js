@@ -41,7 +41,7 @@ router.put("/cancelrequest/:id", verifyToken, cancelRequestController);
 router.put("/follow/:id", verifyToken, followController);
 router.put("/unfollow/:id", verifyToken, unFollowController);
 router.put("/acceptrequest/:id", verifyToken, acceptRequestController);
-router.put("/unfrined/:id", verifyToken, unFriendController);
+router.put("/unfriend/:id", verifyToken, unFriendController);
 router.put("/deleterequest/:id", verifyToken, deleteRequestController);
 
 module.exports = router;

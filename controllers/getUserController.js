@@ -3,7 +3,7 @@ const PostModel = require("../models/Post");
 
 const getUserController = async (req, res, next) => {
   const { username } = req.params;
-  userId = req.user.user;
+  const userId = req.user.user;
 
   try {
     const currentUser = await User.findById(userId);
@@ -22,7 +22,7 @@ const getUserController = async (req, res, next) => {
     };
     if (
       currentUser.friends.includes(getProfile._id) &&
-      getProfile.includes(currentUser._id)
+      getProfile.friends.includes(currentUser._id)
     ) {
       friendShip.friend = true;
     }

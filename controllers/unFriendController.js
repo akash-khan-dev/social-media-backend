@@ -11,20 +11,28 @@ const unFriendController = async (req, res, next) => {
         sender.friends.includes(receiver._id) &&
         receiver.friends.includes(sender._id)
       ) {
-        await receiver.update({
-          $pull: {
-            friends: sender._id,
-            following: sender._id,
-            followers: sender._id,
+        await User.findByIdAndUpdate(
+          receiver._id,
+          {
+            $pull: {
+              friends: sender._id,
+              following: sender._id,
+              followers: sender._id,
+            },
           },
-        });
-        await sender.update({
-          $pull: {
-            friends: receiver._id,
-            following: receiver._id,
-            followers: receiver._id,
+          { new: true }
+        );
+        await User.findByIdAndUpdate(
+          sender._id,
+          {
+            $pull: {
+              friends: receiver._id,
+              following: receiver._id,
+              followers: receiver._id,
+            },
           },
-        });
+          { new: true }
+        );
 
         return res.json({ message: " Unfriend" });
       } else {
