@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-const Reacts = require("../models/Reacts");
 const User = require("../models/userModel");
 const Reacts = require("../models/Reacts");
 const reactPost = async (req, res) => {
@@ -8,12 +6,12 @@ const reactPost = async (req, res) => {
     const userId = req.user.user;
     const check = await Reacts.findOne({
       postId: postId,
-      reactBy: mongoose.Types.ObjectId(userId),
+      reactBy: userId,
     });
     if (check === null) {
       const newReact = new Reacts({
         react: react,
-        postRef: postId,
+        postId: postId,
         reactBy: userId,
       });
       await newReact.save();

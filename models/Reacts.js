@@ -7,7 +7,7 @@ const Reacts = new Schema({
     enum: ["like", "love", "haha", "angry", "wow", "sad"],
     required: true,
   },
-  postRef: {
+  postId: {
     type: Schema.Types.ObjectId,
     ref: "PostModel",
     required: true,
