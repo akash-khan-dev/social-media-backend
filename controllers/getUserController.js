@@ -38,7 +38,12 @@ const getUserController = async (req, res, next) => {
 
     const post = await PostModel.find({ user: getProfile._id })
       .populate("user")
+      .populate(
+        "comments.commentedBy",
+        "profilePicture username firstName lastName"
+      )
       .sort({ createdAt: -1 });
+
     // console.log(getProfile);
     await getProfile.populate(
       "friends",
