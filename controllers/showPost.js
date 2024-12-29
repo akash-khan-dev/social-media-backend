@@ -13,8 +13,7 @@ const showPosts = async (req, res) => {
         .populate(
           "comments.commentedBy",
           "profilePicture username firstName lastName"
-        )
-        .sort({ createdAt: -1 });
+        );
     });
 
     const userPosts = await PostModel.find({ user: req.user.user })
