@@ -1,5 +1,5 @@
 const Reacts = require("../models/Reacts");
-
+const User = require("../models/userModel");
 const getAllReactController = async (req, res) => {
   try {
     const { id } = req.params;
@@ -43,8 +43,16 @@ const getAllReactController = async (req, res) => {
         count: newReact.wow ? newReact.wow.length : 0,
       },
     ];
+    //   check if post id already ot not
+    const user = await User.findById(req.user.user);
 
-    return res.json({ allReacts, check: check?.react, total: react.length });
+    const isPostSave = user?.savePost.find((x) => x.post.toString() === id);
+    return res.json({
+      allReacts,
+      check: check?.react,
+      total: react.length,
+      isPostSave: isPostSave ? true : false,
+    });
   } catch (error) {
     return res.status(404).json({ message: error.message });
   }

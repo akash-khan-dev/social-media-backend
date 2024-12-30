@@ -9,7 +9,10 @@ const showPosts = async (req, res) => {
 
     const postsPromises = combinedIds.map((userId) => {
       return PostModel.find({ user: userId })
-        .populate("user", "profilePicture cover firstName lastName username")
+        .populate(
+          "user",
+          "profilePicture cover firstName lastName username gender"
+        )
         .populate(
           "comments.commentedBy",
           "profilePicture username firstName lastName"
@@ -17,7 +20,10 @@ const showPosts = async (req, res) => {
     });
 
     const userPosts = await PostModel.find({ user: req.user.user })
-      .populate("user", "profilePicture cover firstName lastName username")
+      .populate(
+        "user",
+        "profilePicture cover firstName lastName username gender"
+      )
       .sort({ createdAt: -1 });
 
     const combinedPosts = (await Promise.all(postsPromises)).flat();
