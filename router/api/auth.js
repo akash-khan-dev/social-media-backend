@@ -19,6 +19,9 @@ const unFollowController = require("../../controllers/unFollowController");
 const acceptRequestController = require("../../controllers/acceptRequestController");
 const unFriendController = require("../../controllers/unFriendController");
 const deleteRequestController = require("../../controllers/deleteRequestController");
+const searchController = require("../../controllers/searchController");
+const addSearchHistoryController = require("../../controllers/addSearchHistoryController");
+const getSearchHistoryController = require("../../controllers/getSearchHistoryController");
 
 router.post("/", registrationController);
 router.post("/activate", verifyToken, verifiedUserController);
@@ -43,5 +46,8 @@ router.put("/unfollow/:id", verifyToken, unFollowController);
 router.put("/acceptrequest/:id", verifyToken, acceptRequestController);
 router.put("/unfriend/:id", verifyToken, unFriendController);
 router.put("/deleterequest/:id", verifyToken, deleteRequestController);
+router.post("/search/:searchTerm", verifyToken, searchController);
+router.put("/addSearch", verifyToken, addSearchHistoryController);
+router.get("/getSearchHistory", verifyToken, getSearchHistoryController);
 
 module.exports = router;
