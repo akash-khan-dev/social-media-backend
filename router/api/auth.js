@@ -22,6 +22,7 @@ const deleteRequestController = require("../../controllers/deleteRequestControll
 const searchController = require("../../controllers/searchController");
 const addSearchHistoryController = require("../../controllers/addSearchHistoryController");
 const getSearchHistoryController = require("../../controllers/getSearchHistoryController");
+const RemoveSearchHistoryController = require("../../controllers/RemoveSearchHistoryController");
 
 router.post("/", registrationController);
 router.post("/activate", verifyToken, verifiedUserController);
@@ -49,5 +50,6 @@ router.put("/deleterequest/:id", verifyToken, deleteRequestController);
 router.post("/search/:searchTerm", verifyToken, searchController);
 router.put("/addSearch", verifyToken, addSearchHistoryController);
 router.get("/getSearchHistory", verifyToken, getSearchHistoryController);
+router.put("/removeSearchHistory", verifyToken, RemoveSearchHistoryController);
 
 module.exports = router;
