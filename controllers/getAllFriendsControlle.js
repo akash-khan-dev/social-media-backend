@@ -5,7 +5,6 @@ const getAllFriendsController = async (req, res, next) => {
       .select("friends request")
       .populate("friends", "firstName lastName profilePicture username")
       .populate("request", "firstName lastName profilePicture username");
-
     //   if user send request part
     const userSendRequest = await User.find({
       request: req.user.user,
